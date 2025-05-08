@@ -6,7 +6,7 @@ interface Props {
   date: Date;
   childrens: string;
   adults: string;
-  price: string;
+  price: number;
   user_id: string;
 }
 

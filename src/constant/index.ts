@@ -6,7 +6,7 @@ import charminar from "../../public/charminar.svg";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import charMinarImage from "../../public/charminar.jpg";
 import amberfort from "../../public/abmerfort.jpg";
-import imambara from "../../public/imambara.jpeg";
+import imambara from "../../public/imambara.png";
 import redFort from "../../public/redFort.jpeg";
 import statueOfUnity from "../../public/statueOfUnity.jpg";
 import lotusTemple from "../../public/lotusTemple.jpg";
@@ -138,10 +138,10 @@ export const monuments = [
     closingTiming: "6:00PM",
     daysOpened: "Mon-fri",
     price: {
-      adults: "100",
-      children: "50",
+      adults: 100,
+      children: 50,
     },
-    location: "Lucknow, Uttar Pradest",
+    location: "Lucknow, Uttar Pradesh",
     contact: "+91 8989011317",
   },
   {
@@ -153,8 +153,8 @@ export const monuments = [
     closingTiming: "6:00PM",
     daysOpened: "Mon-fri",
     price: {
-      adults: "100",
-      children: "50",
+      adults: 100,
+      children: 50,
     },
     location: "Lucknow, Uttar Pradest",
     contact: "+91 8989011317",
@@ -168,8 +168,8 @@ export const monuments = [
     closingTiming: "6:00PM",
     daysOpened: "Mon-fri",
     price: {
-      adults: "100",
-      children: "50",
+      adults: 100,
+      children: 50,
     },
     location: "Lucknow, Uttar Pradest",
     contact: "+91 8989011317",

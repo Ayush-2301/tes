@@ -4,7 +4,7 @@ import * as React from "react";
 import { PostgrestSingleResponse } from "@supabase/supabase-js";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { bookingSchema } from "@/lib/schema";
@@ -41,8 +41,8 @@ interface BookingProps extends React.HTMLAttributes<HTMLDivElement> {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setBookingID: React.Dispatch<React.SetStateAction<string>>;
   ticketprice: {
-    adults: string;
-    children: string;
+    adults: number;
+    children: number;
   };
 }
 
@@ -57,12 +57,12 @@ export function BookingForm({
 }: BookingProps) {
   const { toast } = useToast();
   const [tickets, setTickets] = React.useState({
-    children: "0",
-    adult: "0",
+    children: 0,
+    adult: 0,
   });
   //   console.log(parseInt(ticketprice.adults), parseInt(ticketprice.children));
   const router = useRouter();
-  const [price, setPrice] = React.useState("0");
+  const [price, setPrice] = React.useState(0);
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
   });
@@ -71,7 +71,7 @@ export function BookingForm({
     try {
       const supabase = createClient();
       const user = await supabase.auth.getUser();
-      const user_id = user.data.user?.id || " ";
+      const user_id = user.data.user?.id || "";
       if (!user_id) {
         router.push("/login");
         router.refresh();
@@ -92,6 +92,7 @@ export function BookingForm({
       });
       form.reset();
       const responseData = await JSON.parse(res);
+      console.log(responseData);
       setBookingID(responseData.data[0].id);
       setOpen((prev) => !prev);
       if (res) {
@@ -114,14 +115,21 @@ export function BookingForm({
     }
   }
   const handleTicketChange = (type: string, value: string) => {
-    setTickets((prevTickets) => ({
-      ...prevTickets,
+    // Create a new tickets object with the updated value
+    const updatedTickets = {
+      ...tickets,
       [type]: parseInt(value),
-    }));
+    };
+
+    // Set the tickets state
+    setTickets(updatedTickets);
+
+    // Calculate price using the updated ticket values
     const newPrice =
-      parseInt(tickets.adult) * parseInt(ticketprice.adults) +
-      parseInt(tickets.children) * parseInt(ticketprice.children);
-    setPrice(newPrice.toString());
+      updatedTickets.adult * ticketprice.adults +
+      updatedTickets.children * ticketprice.children;
+
+    setPrice(newPrice);
   };
 
   return (

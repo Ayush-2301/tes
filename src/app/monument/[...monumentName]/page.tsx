@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -34,11 +34,20 @@ const Page = ({
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
+  const [openQR, setOpenQR] = useState(false);
   const [bookingID, setBookingID] = useState<string>("");
   const filteredMonument = monuments.find(
     (monument) => monument.name == params.monumentName
   );
+
+  useEffect(() => {
+    if (bookingID) {
+      setOpenQR(true);
+    }
+  }, [bookingID]);
+
   if (!filteredMonument) return null;
+
   return (
     <div className="pt-6 flex flex-col space-y-4">
       <h1 className="text-5xl font-bold capitalize ml-12">
@@ -124,7 +133,7 @@ const Page = ({
             </DialogContent>
           </Dialog>
 
-          <Dialog open={bookingID ? true : false}>
+          <Dialog open={openQR} onOpenChange={setOpenQR}>
             {/* <DialogTrigger asChild>
               <Button variant="secondary">Book Tickets</Button>
             </DialogTrigger> */}
