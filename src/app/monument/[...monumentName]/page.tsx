@@ -74,7 +74,7 @@ const Page = ({
                         alt={filteredMonument?.name}
                         width={100}
                         height={100}
-                        className="w-full aspect-video object-fill"
+                        className="w-full object-contain"
                       />
                     </CardContent>
                   </Card>

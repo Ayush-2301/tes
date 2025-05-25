@@ -11,7 +11,6 @@ import redFort from "../../public/redFort.jpeg";
 import statueOfUnity from "../../public/statueOfUnity.jpg";
 import lotusTemple from "../../public/lotusTemple.jpg";
 import tajMahal from "../../public/tajMahal.avif";
-import charMinar from "../../public/charminartImage.jpg";
 
 import qutubMinar from "../../public/qutubMinar.jpg";
 export const popularCities = [
