@@ -66,6 +66,9 @@ export function UserItem({ session }: { session: UserResponse }) {
                 </p>
               </div>
             </DropdownMenuLabel>
+            <DropdownMenuItem asChild>
+              <Link href="/profile">Profile</Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer" onClick={handleLogOut}>
               Log out

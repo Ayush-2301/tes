@@ -61,20 +61,20 @@ const Page = ({
           className="w-full border-none"
         >
           <CarouselContent className="border-none">
-            {Array.from({ length: 5 }).map((_, index) => (
+            {filteredMonument.images.map((image, index) => (
               <CarouselItem
                 key={index}
                 className="md:basis-1/2 lg:basis-1/3 h-[300px]"
               >
                 <div className="">
                   <Card>
-                    <CardContent className=" aspect-square">
+                    <CardContent>
                       <Image
-                        src={filteredMonument?.image}
-                        alt={filteredMonument?.name}
+                        src={image}
+                        alt={`${filteredMonument?.name} image ${index + 1}`}
                         width={100}
                         height={100}
-                        className="w-full object-contain"
+                        className="w-full object-cover aspect-square "
                       />
                     </CardContent>
                   </Card>
@@ -129,6 +129,7 @@ const Page = ({
                 setBookingID={setBookingID}
                 setOpen={setOpen}
                 ticketprice={filteredMonument.price}
+                monumentName={filteredMonument.name}
               />
             </DialogContent>
           </Dialog>

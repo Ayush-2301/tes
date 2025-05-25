@@ -44,6 +44,7 @@ interface BookingProps extends React.HTMLAttributes<HTMLDivElement> {
     adults: number;
     children: number;
   };
+  monumentName: string;
 }
 
 type FormData = z.infer<typeof bookingSchema>;
@@ -53,6 +54,7 @@ export function BookingForm({
   ticketprice,
   setOpen,
   setBookingID,
+  monumentName, // Added monument name prop
   ...props
 }: BookingProps) {
   const { toast } = useToast();
@@ -89,6 +91,7 @@ export function BookingForm({
         childrens,
         adults,
         date,
+        monument_name: monumentName,
       });
       form.reset();
       const responseData = await JSON.parse(res);
